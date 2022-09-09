@@ -1,15 +1,13 @@
 apply plugin: "com.android.library"
-apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.badlogic.gdx.sqlite'
 version = '0.1'
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${appcompat_library_version}"
+    testImplementation 'junit:junit:4.13.2'
 
-    compile project(":gdx-sqlite")
-    compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+    api project(":gdx-sqlite")
+    api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
 }
 
 android {
@@ -17,7 +15,7 @@ android {
     buildToolsVersion android_version
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 16
         targetSdkVersion android_compile_version
         versionCode 1
         versionName "1.0"
@@ -38,10 +36,5 @@ android {
             jniLibs.srcDirs = ['libs']
         }
 
-        instrumentTest.setRoot('tests')
-    }
-    // TODO : do we really need this?
-    lintOptions {
-        abortOnError false
     }
 }

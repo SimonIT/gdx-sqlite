@@ -1,19 +1,20 @@
 apply plugin: "java"
 
 repositories {
-    jcenter()
+    gradlePluginPortal()
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
 dependencies {
-    compile project(":gdx-sqlite")
+    implementation project(":DatabaseTest")
+    implementation project(":gdx-sqllite-robovm")
 
-    compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
-    compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
-    compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-    compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+    implementation "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
+    implementation "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
+    implementation "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
 }
 
 sourceSets.main.java.srcDirs = [ "src/" ]

@@ -2,11 +2,12 @@ apply plugin: "java"
 
 sourceCompatibility = 1.7
 sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.resources.srcDirs = [ "../DatabaseTest-android/assets" ]
 
 dependencies {
-    compile project(":DatabaseTest")
-    compile project(":gdx-sqlite-desktop")
+    implementation project(":DatabaseTest")
+    implementation project(":gdx-sqlite-desktop")
 
-    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-    compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 }
