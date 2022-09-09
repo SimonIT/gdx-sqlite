@@ -1,10 +1,12 @@
 
 package com.badlogic.gdx.sqlite.desktop;
 
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetFactory;
+import javax.sql.rowset.RowSetProvider;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.sun.rowset.CachedRowSetImpl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.sqlite.DatabaseCursor;
@@ -16,11 +18,21 @@ import com.badlogic.gdx.sqlite.SQLiteGdxRuntimeException;
  * @author M Rafay Aleem */
 public class DesktopCursor implements DatabaseCursor {
 
+	private static final RowSetFactory provider;
+
+	static {
+		try {
+			provider = RowSetProvider.newFactory();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	/**
-	 * Reference of {@code CachedRowSetImpl} Class Type created for both forward, backward, and random traversing the records, as for ResultSet Class Type 
+	 * Reference of {@code CachedRowSet} Class Type created for both forward, backward, and random traversing the records, as for ResultSet Class Type
 	 * sqlite does not support other than forward traversing
 	 */
-	private CachedRowSetImpl resultSet = null;
+	private CachedRowSet resultSet = null;
 
 	@Override
 	public byte[] getBlob (int columnIndex) {
@@ -165,7 +177,7 @@ public class DesktopCursor implements DatabaseCursor {
 
 	public void setNativeCursor (ResultSet resultSetRef) {
 		try {
-			resultSet = new CachedRowSetImpl();
+			resultSet = provider.createCachedRowSet();
 			resultSet.populate (resultSetRef);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
