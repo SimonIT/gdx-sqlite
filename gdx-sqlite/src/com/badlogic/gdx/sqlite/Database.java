@@ -28,11 +28,10 @@ public interface Database {
 	/** Closes the opened database and releases all the resources related to this database.
 	 * @throws com.badlogic.gdx.sqlite.SQLiteGdxException */
 	public void closeDatabase () throws com.badlogic.gdx.sqlite.SQLiteGdxException;
-	
+
    /**
     * Get a prepared statement.
-    * 
-    * @param prepStat give the {@link com.badlogic.gdx.sqlite.PreparedStatement prepared statement} to use
+    *
     * @param query the query to prepare
     * @return the prepared statement of the query
     * @throws com.badlogic.gdx.sqlite.SQLiteGdxRuntimeException
@@ -40,7 +39,7 @@ public interface Database {
    public com.badlogic.gdx.sqlite.PreparedStatement getPreparedStatement(String query) throws com.badlogic.gdx.sqlite.SQLiteGdxException;
 
    public void beginTransaction() throws com.badlogic.gdx.sqlite.SQLiteGdxException;
-   
+
    public void setTransactionSuccessful() throws com.badlogic.gdx.sqlite.SQLiteGdxException;
 
    public void endTransaction() throws com.badlogic.gdx.sqlite.SQLiteGdxException;
@@ -65,10 +64,10 @@ public interface Database {
 	 * @return the passed {@link com.badlogic.gdx.sqlite.DatabaseCursor}.
 	 * @throws com.badlogic.gdx.sqlite.SQLiteGdxException */
 	public com.badlogic.gdx.sqlite.DatabaseCursor rawQuery (com.badlogic.gdx.sqlite.DatabaseCursor cursor, String sql) throws com.badlogic.gdx.sqlite.SQLiteGdxException;
-	
+
    /**
     * Return the last insert query generated id.
-    * 
+    *
     * @return the last generated id
     */
    public long getLastRowId() throws com.badlogic.gdx.sqlite.SQLiteGdxException;

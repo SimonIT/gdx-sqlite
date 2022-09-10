@@ -1,4 +1,5 @@
 apply plugin: "java-library"
+apply plugin: 'maven-publish'
 
 group = 'com.badlogic.gdx.sqlite'
 version = '0.1'
@@ -22,3 +23,16 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 
 sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
